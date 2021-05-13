@@ -1,0 +1,39 @@
+GET http://localhost:8000/api/v1/desks
+Accept: application/json
+
+###
+
+GET http://localhost:8000/api/v1/desks/5
+Accept: application/json
+
+###
+
+GET http://localhost:8000/api/v1/desks/126
+Accept: application/json
+
+###
+
+POST http://localhost:8000/api/v1/desks?name=NewTown
+Accept: application/json
+
+###
+
+POST http://localhost:8000/api/v1/desks?name=
+Accept: application/json
+
+###
+
+POST http://localhost:8000/api/v1/desks/3?_method=PUT&name=SuperDuperTestUpdate2
+Accept: application/json
+
+###
+
+POST http://localhost:8000/api/v1/desks/8?_method=PUT&name=
+Accept: application/json
+
+###
+
+POST http://localhost:8000/api/v1/desks/28?_method=DELETE
+Accept: application/json
+
+###
