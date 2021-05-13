@@ -19,7 +19,7 @@ class DeskController extends Controller
      */
     public function index(): AnonymousResourceCollection
     {
-        return DeskResource::collection(Desk::with('lists')->get());
+        return DeskResource::collection(Desk::all());
     }
 
     /**
@@ -38,34 +38,40 @@ class DeskController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param int $id
+     * @param Desk $desk
      * @return DeskResource
      */
-    public function show(int $id): DeskResource
+    public function show(Desk $desk): DeskResource
     {
-        return new DeskResource(Desk::with('lists')->findOrFail($id));
+        return new DeskResource($desk);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param Request $request
-     * @param  int  $id
-     * @return Response
+     * @param DeskStoreRequest $request
+     * @param Desk $desk
+     * @return DeskResource
      */
-    public function update(Request $request, $id)
+    public function update(DeskStoreRequest $request,
+                           Desk             $desk): DeskResource
     {
-        //
+        $desk->update($request->validated());
+
+        return new DeskResource($desk);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Desk $desk
      * @return Response
      */
-    public function destroy($id)
+    public function destroy(Desk $desk): Response
     {
-        //
+        $desk->delete();
+
+        return response(null,
+                  Response::HTTP_NO_CONTENT);
     }
 }
