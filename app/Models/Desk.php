@@ -10,6 +10,8 @@ class Desk extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['name'];
+
     /**
      * @return HasMany
      */
